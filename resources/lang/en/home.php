@@ -143,5 +143,8 @@ return [
             'support' => 'Support osu!',
             'store' => 'osu!store',
         ],
+        'skins' => [
+            'new' => 'New Completed Skins',
+        ],
     ],
 ];

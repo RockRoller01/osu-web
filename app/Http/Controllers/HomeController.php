@@ -13,6 +13,7 @@ use App\Models\BeatmapDownload;
 use App\Models\Beatmapset;
 use App\Models\Forum\Post;
 use App\Models\NewsPost;
+use App\Models\Skin;
 use App\Models\UserDonation;
 use Auth;
 use Jenssegers\Agent\Agent;
@@ -96,7 +97,8 @@ class HomeController extends Controller
 
         $newsLimit = Auth::check() ? NewsPost::DASHBOARD_LIMIT + 1 : NewsPost::LANDING_LIMIT;
         $news = NewsPost::default()->limit($newsLimit)->get();
-
+        $skins = Skin::latestSkins();
+        
         if (Auth::check()) {
             $newBeatmapsets = Beatmapset::latestRanked();
             $popularBeatmapsets = Beatmapset::popular()->get();
@@ -104,7 +106,8 @@ class HomeController extends Controller
             return ext_view('home.user', compact(
                 'newBeatmapsets',
                 'news',
-                'popularBeatmapsets'
+                'popularBeatmapsets',
+                'skins'
             ));
         } else {
             $news = json_collection($news, 'NewsPost');

@@ -92,6 +92,16 @@
                         @include('home._user_beatmapset', ['type' => 'popular'])
                     @endforeach
                 </div>
+
+                <h3 class='user-home__skin-list-title'>
+                    {{ osu_trans('home.user.skins.new') }}
+                </h3>
+
+                <div class="user-home__skins">
+                    @foreach ($skins as $skin)
+                        @include('home._user_skin')
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
